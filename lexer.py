@@ -1,3 +1,4 @@
+#fabian y ricky 
 import re
 
 # abre el archivo y giuarda cada línea en una lista y se recorre por lineas
@@ -62,26 +63,23 @@ def lexerAritmetico(archivo):
 
             if linea[i] == '-':
             
-
                 #el -? hace que el signo sea opcional, \.\d+ permite que haya numeros despues de un punto opcional igual
                 #[eE][+-]?\d+ permite que haya un numero entero despues de la Ee. en resumen esto nos 
                 # da la opcion de que sea un numero entero, decimal o de notacion cientifica.
                 match = re.match(r'-?\d+(\.\d+)?([eE][+-]?\d+)?', linea[i:])
                 if match:
-                    token = match.group(0)
+                    token = match.group(0) #para que guarde el numero completo que se encontró, con todo y despues del punto 
                     if '.' in token or 'E' in token or 'e' in token:
                         print(f"{token:<30} Real")
                     else:
                         print(f"{token:<30} Entero")
-                    i += len(token)
+                    i += len(token)#que i pase ya al siguiente dato 
                 else:
                     print(f"{'-':<30} Resta")
                     i += 1
                 continue
 
-                #The regular expression \d+(\.\d+)?|\.\d+ is designed to match both integers 
-                # and decimal numbers (both with and without a leading zero). 
-                # It works by using an "OR" (|) operator to check for two different formats. 
+                #si no inicia con "-"
             match = re.match(r'-?\d+(\.\d+)?([eE][+-]?\d+)?', linea[i:])
             if match:
                 token = match.group(0)
@@ -92,7 +90,7 @@ def lexerAritmetico(archivo):
                 i += len(token) 
                 continue
 
-            # 
+            # cualquier variable de letra mayuscula o minuscula 
             match = re.match(r'[a-zA-Z]', linea[i:])
             if match:
                 token = match.group(0)
